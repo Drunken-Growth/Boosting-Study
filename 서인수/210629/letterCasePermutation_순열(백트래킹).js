@@ -1,7 +1,13 @@
 var letterCasePermutation = function (s) {
-  // 알파벳을 만나면 lowercase로 1번 upperCase로 한 번 추가해준다.
+  // 풀이방법
+  // 모든 경우의 수를 탐색할 수 있도록 dfs이용
+
+  // 1. rec재귀함수 - 현재까지의 글자와 idx를 받음
+  // 1-1) idx가 s.length 일 때 글자가 완성되므로 result에 담고 재귀종료
+  // 1-2) 현재 해당하는 글자가 알파벳이라면
+  //      1-2-1) 현재글자에 대소문자 각각 추가하고 idx+1
+  //      1-2-2) 숫자라면 숫자 추가하고 idx + 1
   let result = [];
-  let answer = "";
 
   function rec(word, idx) {
     if (idx === s.length) {
@@ -17,6 +23,6 @@ var letterCasePermutation = function (s) {
       rec(word + c, idx + 1);
     }
   }
-  rec(answer, 0);
+  rec("", 0);
   return result;
 };
