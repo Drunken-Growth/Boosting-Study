@@ -13,20 +13,18 @@
 
 var letterCasePermutation = function (s) {
   s = s.toLowerCase();
-  // 알파벳 index 구해서 push
   let alphabets = [];
   for (let i = 0; i < s.length; i++) {
     if (97 <= s.charCodeAt(i) && s.charCodeAt(i) <= 122) {
       alphabets.push(i);
     }
   }
-  // 인덱스별 조합 구하기
+
   let permutations = [];
   for (let i = 1; i <= alphabets.length; i++) {
     makePermutaion([], i, 0);
   }
 
-  // 조합 순회하면서 대문자로 만들기
   let output = [s];
   permutations.forEach((per) => {
     let newStr = s;
@@ -48,8 +46,3 @@ var letterCasePermutation = function (s) {
     }
   }
 };
-
-console.log(letterCasePermutation("0"));
-console.log(letterCasePermutation("12345"));
-console.log(letterCasePermutation("3z4"));
-console.log(letterCasePermutation("a1b2"));
