@@ -1,120 +1,90 @@
 function solution(input) {
-  //   console.log(input);
-
   let [N, M] = input.shift();
-  let [y, x, dir] = input.shift();
+  let [x, y, dir] = input.shift();
   let world = input.shift();
+  let visited = Array(N)
+    .fill()
+    .map(() => Array(M).fill(0));
 
-  // map을 둘러싸고 바다 생성하기.
-  world.map((el) => el.unshift(1));
-  world.map((el) => el.push(1));
-  world.unshift(Array(M + 2).fill(1));
-  world.push(Array(M + 2).fill(1));
-  //   console.log(world);
+  console.log(x, y);
+  console.log(world);
 
-  // 회전따로
-  // 이동따로
-
-  // 북 동 남 서
-  //  0 1 2 3
-  x++;
-  y++;
-  world[y][x] = 3;
-  // 회전 후 이동
-  let dx = [0, 1, 0, -1];
-  let dy = [-1, 0, 1, 0];
-
-  let move_cnt = 1;
+  visited[x][y] = 1;
+  console.log(visited);
+  let visit_cnt = 1;
   let turn_cnt = 0;
-  while (true) {
-    // console.log([y, x]);
-    turn_left();
 
-    let nx = x + dx[dir];
-    let ny = y + dy[dir];
-    // console.log([ny, nx, world[ny][nx], "nextX & nextY"]);
-    if (isCheckGo(nx, ny)) {
+  let dx = [-1, 0, 1, 0];
+  let dy = [0, 1, 0, -1];
+
+  while (true) {
+    // console.log([x, y]);
+    turn_left();
+    nx = x + dx[dir];
+    ny = y + dy[dir];
+
+    // check Next
+    if (world[nx][ny] === 0 && visited[nx][ny] === 0) {
+      visited[nx][ny] = 1;
       x = nx;
       y = ny;
-      // 방문체크
-      move_cnt++;
+
+      visit_cnt++;
       turn_cnt = 0;
-      world[y][x] = 3;
-      //   console.log(world);
+      console.log([x, y, "방문1"]);
+      console.log(visited);
+      continue;
     } else {
       turn_cnt++;
     }
+    // 가봤던 곳이나, 존재하지 않는 경우, 바다인경우
+    // 4회전 했을 때, 뒤에만 확인
     if (turn_cnt === 4) {
-      // 뒤로가는건 앞으로가는 것의 반대이므로 -dx, -dy
       nx = x - dx[dir];
       ny = y - dy[dir];
-      if (!isCheckSea(nx, ny)) {
+
+      if (world[nx][ny] === 0 && visited[nx][ny] === 0) {
         x = nx;
         y = ny;
-        move_cnt++;
-        turn_cnt = 0;
+        visited[nx][ny] = 1;
+        visit_cnt++;
+        console.log([x, y, "방문2"]);
+        console.log(visited);
       } else {
-        // 바다로 막힘
         break;
       }
+      turn_cnt = 0;
     }
   }
 
-  // 현재 direction을 -1 해주어 바꿔주는 함수
   function turn_left() {
     dir -= 1;
-    if (dir < 0) {
+    if (dir === -1) {
       dir = 3;
     }
   }
-
-  // 앞 부분이 바다나 방문한 곳인지 확인하는 코드
-  function isCheckGo(nextX, nextY) {
-    // 바다아니고, 방문안했으면 true
-    return world[nextY][nextX] !== 1 && world[nextY][nextX] !== 3;
-  }
-  function isCheckSea(nextX, nextY) {
-    // 바다아니고, 방문안했으면 true
-    return world[nextY][nextX] === 1;
-  }
-
-  return move_cnt;
+  console.log(visit_cnt);
+  return visit_cnt;
 }
 
-console.log(
-  solution([
-    [4, 4],
-    [1, 1, 0],
-    [
-      [1, 1, 1, 1],
-      [1, 0, 0, 1],
-      [1, 1, 0, 1],
-      [1, 1, 1, 1],
-    ],
-  ])
-);
+solution([
+  [4, 4],
+  [1, 1, 0],
+  [
+    [1, 1, 1, 1],
+    [1, 0, 0, 1],
+    [1, 1, 0, 1],
+    [1, 1, 1, 1],
+  ],
+]); //3
 
-console.log(
-  solution([
-    [4, 4],
-    [1, 1, 0],
-    [
-      [1, 1, 1, 1],
-      [1, 0, 0, 1],
-      [1, 1, 0, 0],
-      [1, 1, 1, 1],
-    ],
-  ])
-);
-
-console.log(
-  solution([
-    [3, 3],
-    [1, 1, 0],
-    [
-      [1, 1, 1],
-      [1, 0, 0],
-      [1, 1, 0],
-    ],
-  ])
-);
+solution([
+  [4, 4],
+  [1, 1, 0],
+  [
+    [1, 1, 1, 1],
+    [1, 0, 0, 1],
+    [1, 1, 0, 0],
+    [1, 1, 1, 1],
+  ],
+]); //4
