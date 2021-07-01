@@ -37,3 +37,25 @@ function solution(s) {
     
     return answer;
 }
+
+function solution(s) {
+    s = s.slice(2, s.length - 2)
+        .split('},{')
+        .sort((a, b) => a.length - b.length)
+        .map((x) => x.split(','));
+    
+    const result = [];
+    const hash = {};
+    for (let i = 0; i < s.length; i++) {
+        const target = s[i];
+        target.forEach((x) => {
+            if (!hash[x]) {
+                hash[x] = 1;
+                result.push(Number(x));
+            } else {
+                hash[x]+= 1;
+            }
+        })
+    }
+    return result;
+}
