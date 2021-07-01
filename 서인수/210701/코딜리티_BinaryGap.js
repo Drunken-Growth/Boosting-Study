@@ -18,3 +18,5 @@ function solution(N) {
   return result;
   // write your code in JavaScript (Node.js 8.9.4)
 }
+
+solution(1041); // 6
