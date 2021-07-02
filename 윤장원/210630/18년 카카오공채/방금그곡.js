@@ -23,9 +23,9 @@ function solution(m, musicinfos) {
     const div = parseInt(totalTime / albo.length);
         
     if(div > 0) {
-        albo = albo.repeat(div).substring(res);
+      albo += albo.repeat(div);
     } else {
-        albo = albo.substring(0, res);
+      albo = albo.substring(0, res);
     }
     
     // 최대값 갱신
