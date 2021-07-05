@@ -1,3 +1,4 @@
+// 나중에 다시 한 번 풀이보기
 // 올라가는 물고기 stack에 담아서 계산하기
 
 function solution(A, B) {
