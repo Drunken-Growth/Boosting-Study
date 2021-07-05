@@ -1,3 +1,17 @@
+// 2차풀이
+// A % K 로 나누어지는 경우의 엣지처리를 위해 A에서 1을 빼준 것으로 나누도록 한다.
+//
+// startQ = (A
+function solution(A, B, K) {
+  const startQ = Math.floor((A - 1) / K); // 나누어떨어지는 경우를 위해, startQ는 가능하지 않은 최대 몫의 값이다.
+  const endQ = Math.floor(B / K);
+  const result = endQ - startQ;
+
+  // console.log([startQ, endQ, result])
+
+  return result;
+}
+
 // 1차 풀이
 // => 엣지케이스 [0,0,11] , [10,10,5] 등에서 통과히지 않는다.
 
