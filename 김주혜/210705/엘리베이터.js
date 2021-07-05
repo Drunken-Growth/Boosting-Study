@@ -24,4 +24,4 @@ console.log(solution(420, [0, 900, 0, 200, 150, 0, 30, 50])); // 5
 console.log(solution(100, [245, 317, 151, 192])); // 0
 console.log(solution(10, [1, 2, 1, 2, 3, 4])); // 5
 console.log(solution(15, [1, 2, 1, 2, 3, 4])); // 6
-console.log(solution(20, [10, 10, 5, 5])); // 2
+console.log(solution(20, [10, 10, 5, 5])); // 3
