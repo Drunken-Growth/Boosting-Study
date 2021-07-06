@@ -1,3 +1,6 @@
+// 문제이해
+// A배열이 주어잘 때, 가장 큰 원소간 차이(b-a)를 구하는 문제, 단 a의 idx < b의 idx
+
 function solution(A) {
   let min = A[0];
   let result = 0;
