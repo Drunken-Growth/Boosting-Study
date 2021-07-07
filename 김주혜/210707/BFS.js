@@ -2,30 +2,29 @@
 
 function processData(input) {
   input = input.split("\n");
-  let queries = [];
   let i = 1;
-
   while (i < input.length) {
     let [n, q] = input[i].split(" ").map((el) => Number(el));
     let nodes = input.slice(i + 1, i + 1 + q);
     let s = Number(input[i + 1 + q]);
-    nodes = nodes.map((el) => el.split(" ").map((el) => Number(el)));
-    queries.push([n, s, nodes]);
+    nodes = nodes.map((el) => el.split(" "));
+    bfs(n, s, nodes);
     i += q + 2;
   }
 
-  for (let i = 0; i < Number(input[0]); i++) {
-    let [n, s, nodes] = queries[i];
+  function bfs(n, s, nodes) {
     let graph = makeGraph(nodes);
     let visited = Array(n + 1).fill(Infinity);
     visited[s] = 0;
     let Q = [[s, 0]];
     while (Q.length) {
       let [v, step] = Q.shift();
-      for (let i = 0; i < graph[v].length; i++) {
-        if (visited[graph[v][i]] > step + 6) {
-          visited[graph[v][i]] = step + 6;
-          Q.push([graph[v][i], step + 6]);
+      if (graph[v]) {
+        for (let i = 0; i < graph[v].length; i++) {
+          if (visited[graph[v][i]] > step + 6) {
+            visited[graph[v][i]] = step + 6;
+            Q.push([graph[v][i], step + 6]);
+          }
         }
       }
     }
@@ -40,7 +39,7 @@ function processData(input) {
   function makeGraph(nodes) {
     let graph = {};
     for (let i = 0; i < nodes.length; i++) {
-      let [from, to] = nodes[i];
+      let [from, to] = nodes[i].map((el) => Number(el));
       graph[from] ? graph[from].push(to) : (graph[from] = [to]);
       graph[to] ? graph[to].push(from) : (graph[to] = [from]);
     }
