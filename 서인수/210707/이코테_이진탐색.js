@@ -17,10 +17,10 @@ function binary_search() {
 
     if (target > arr[mid]) {
       // 타겟이 오른쪽이면 시작값을 mid로 바굼
-      return byRecursion(arr, target, mid, end);
+      return byRecursion(arr, target, mid + 1, end);
     } else {
       // 타겟이 왼쪽에 존재하면 끝값을 가운데로 바꿈
-      return byRecursion(arr, target, start, mid);
+      return byRecursion(arr, target, start, mid - 1);
     }
   }
 
