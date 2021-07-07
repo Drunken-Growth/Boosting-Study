@@ -1,3 +1,5 @@
+// https://programmers.co.kr/learn/courses/30/lessons/12978?language=javascript
+// 다익스트라 알고리즘
 function solution(N, road, K) {
   const visited = Array.from({ length: N + 1 }, () => Infinity);
   const graph = Array.from({ length: N + 1 }, () => []);
@@ -12,7 +14,7 @@ function solution(N, road, K) {
   const Q = [[1, 0]];
   // 방문 처리
   visited[1] = 0;
-  
+
   while (Q.length) {
     const [node, time] = Q.shift();
     const next = graph[node];
