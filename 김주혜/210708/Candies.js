@@ -6,7 +6,6 @@ function candies(n, arr) {
     if (arr[i - 1] < arr[i]) candy[i] = candy[i - 1] + 1;
   }
   for (let i = arr.length - 1; i > 0; i--) {
-    console.log(arr[i - 1], arr[i]);
     if (arr[i - 1] > arr[i] && candy[i - 1] <= candy[i])
       candy[i - 1] = candy[i] + 1;
   }
