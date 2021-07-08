@@ -13,7 +13,8 @@ function roadsAndLibraries(n, c_lib, c_road, cities) {
   // 라이브러리가 도로 건설보다 작은 경우 라이브러리만 건설하면 된다.
 	if (c_lib <= c_road) return n * c_lib;
 	const visited = Array.from({ length: n + 1 }, () => 0);
-	const graph = Array.from({ length: n + 1 }, () => []); let result = 0;
+	const graph = Array.from({ length: n + 1 }, () => []);
+	let result = 0;
 	for (const [u, v] of cities) {
 		graph[u].push(v);
 		graph[v].push(u);
