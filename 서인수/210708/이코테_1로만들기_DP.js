@@ -9,28 +9,50 @@
 // function solution(N){
 
 // 2차시도 (by재귀, 탑다운)
-let memo = [];
-function makeOne(n) {
-  //   console.log([n, memo]);
-  if (n === 1) return 0;
-  if (memo[n]) return memo[n];
+// let memo = [];
+// function makeOne(n) {
+//   //   console.log([n, memo]);
+//   if (n === 1) return 0;
+//   if (memo[n]) return memo[n];
 
-  // 1빼는 경우
-  memo[n] = makeOne(n - 1) + 1;
-  if (n % 5 === 0) {
-    let temp = makeOne(n / 5) + 1;
-    memo[n] = Math.min(memo[n], temp);
+//   // 1빼는 경우
+//   memo[n] = makeOne(n - 1) + 1;
+//   if (n % 5 === 0) {
+//     let temp = makeOne(n / 5) + 1;
+//     memo[n] = Math.min(memo[n], temp);
+//   }
+//   if (n % 3 === 0) {
+//     let temp = makeOne(n / 3) + 1;
+//     memo[n] = Math.min(memo[n], temp);
+//   }
+//   if (n % 2 === 0) {
+//     let temp = makeOne(n / 2) + 1;
+//     memo[n] = Math.min(memo[n], temp);
+//   }
+//   return memo[n];
+// }
+
+// console.log(makeOne(6, 0)); //3
+
+// by for문 바텁업
+let memo = [0, 0];
+function makeOneByFor(n) {
+  for (let i = 2; i <= n; i++) {
+    memo[i] = memo[i - 1] + 1; // 2
+    if (i % 2 === 0) {
+      memo[i] = Math.min(memo[i], memo[i / 2] + 1); //3
+    }
+    if (i % 3 === 0) {
+      memo[i] = Math.min(memo[i], memo[i / 3] + 1);
+    }
+    if (i % 5 === 0) {
+      memo[i] = Math.min(memo[i], memo[i / 5] + 1);
+    }
   }
-  if (n % 3 === 0) {
-    let temp = makeOne(n / 3) + 1;
-    memo[n] = Math.min(memo[n], temp);
-  }
-  if (n % 2 === 0) {
-    let temp = makeOne(n / 2) + 1;
-    memo[n] = Math.min(memo[n], temp);
-  }
+  console.log([n, memo]);
   return memo[n];
 }
+console.log(makeOneByFor(30));
 
 // 1차시도 ... cnt를 저장해야하는데 잘못된 방식으로 접근
 // let memo = [];
@@ -56,5 +78,3 @@ function makeOne(n) {
 // }
 
 // }
-
-console.log(makeOne(6, 0)); //3
