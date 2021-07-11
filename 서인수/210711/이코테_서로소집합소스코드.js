@@ -48,3 +48,17 @@ console.log(
     [5, 6],
   ])
 );
+
+// 경로압축법
+// 부모테이블이 현재의 부모노드를 가르키는 것이 아니라, 아예 루트노드를 가리키게 함으로
+// find연산의 최악의 시간복잡도(O(VM)) (노드개수가 간선만큼 확인하는 것)
+// (4,5)(3,4)(2,3)(1,2)일때 find 연산은 각각N(===V)번작동
+
+// 루트노드를 끝까지 찾아 리턴하게 함으로 해결할 수 있다.
+
+function find_parent(parent, x) {
+  if (parent[x] !== x) {
+    parent[x] = find_parent(parent, parent[x]);
+  }
+  return parent[x];
+}
