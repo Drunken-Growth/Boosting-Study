@@ -7,19 +7,6 @@ function solution(n, results) {
   let graph = makeGraph();
   console.log(graph);
   // 1. 순회하며 승부값 업데이트
-  for (let i = 1; i <= n; i++) {
-    for (let j = 1; j <= n; j++) {
-      if (graph[i][j] === null) continue;
-      if (graph[i][j] === 1) {
-        //  i  > j
-        update(graph, i, j, 1); // j열로 가서 j가 이기 것들 모두 i가 이기도록 처리
-      } else {
-        update(graph, i, j, 0); // j열로 가서 j가 진것들 모두 i가 지도록처리
-      }
-    }
-  }
-  console.log(graph);
-  // 2. 순회하며 승부값 업데이트2 (수정필요부분)
   for (let j = 1; j <= n; j++) {
     for (let i = 1; i <= n; i++) {
       if (graph[i][j] === null) continue;
