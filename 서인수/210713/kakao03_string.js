@@ -13,10 +13,15 @@
 
 function solution(line1, line2) {
   let result = 0;
+
   for (let i = 0; i < line1.length; i++) {
-    if (line1[i] === line2[0]) {
-      let curStr = line1.slice(i);
-      checkStr(i, curStr);
+    if (line1[i] === line2) {
+      result++;
+    } else {
+      if (line1[i] === line2[0]) {
+        let curStr = line1.slice(i);
+        checkStr(i, curStr);
+      }
     }
   }
   return result;
@@ -40,7 +45,11 @@ function solution(line1, line2) {
     }
   }
 }
-
+console.log(solution("aaa", "a"));
 console.log(solution("abbbcbbb", "bbb")); //4
 console.log(solution("abcabcabc", "abc")); //4
 console.log(solution("abacaba", "acb")); //0
+console.log(solution("ababab", "ab")); // 6
+console.log(solution("bbbb", "ab")); // 0
+console.log(solution("abbbb", "ab")); // 4
+console.log(solution("ababb", "aba")); // 1
