@@ -31,3 +31,5 @@ var findPeakElement = function (nums) {
 console.log(findPeakElement([1, 2, 3, 1])); // 2
 console.log(findPeakElement([1, 2, 1, 3, 5, 6, 4])); // 1or 5
 console.log(findPeakElement([-3638392])); // 0
+console.log(findPeakElement([8, 7, 6, 5, 4, 3, 2, 7, 6])); // 0 or 7
+console.log(findPeakElement([1, 2, 3, 4, 5, 6, 7, 8, 9])); // 8
